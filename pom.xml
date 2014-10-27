@@ -14,7 +14,6 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<!-- version>1.1.8.RELEASE</version -->
 		<version>1.2.0.M2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
@@ -24,6 +23,7 @@
 		<start-class>com.kumliens.school.Application</start-class>
 		<java.version>1.8</java.version>
 		<postgres.version>9.3-1102-jdbc41</postgres.version>
+		<jasypt.version>1.9.0</jasypt.version>
 	</properties>
 
 
@@ -54,6 +54,13 @@
 			<artifactId>postgresql</artifactId>
 			<version>${postgres.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+			<version>${jasypt.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
