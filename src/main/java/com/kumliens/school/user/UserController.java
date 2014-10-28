@@ -1,6 +1,7 @@
-package com.kumliens.school.web.controllers;
+package com.kumliens.school.user;
 
-import org.apache.catalina.util.MD5Encoder;
+import javax.validation.Valid;
+
 import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,11 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.kumliens.school.entities.User;
-import com.kumliens.school.repos.UserRepo;
-import com.kumliens.school.web.requests.CreateUserRequest;
-import com.kumliens.school.web.responses.UserResponse;
 
 
 @RestController
@@ -53,15 +49,11 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, produces="application/json", consumes="application/json")
-	public ResponseEntity<?> createUser(@RequestBody CreateUserRequest request) {
+	public ResponseEntity<?> createUser(@RequestBody @Valid CreateUserRequest request) {
 		logger.info("About to create new user from request {}", request);
 
 		if(!passwordsOk(request.password1, request.password2)) {
 			return new ResponseEntity<String>("Bad passwords", HttpStatus.BAD_REQUEST);
-		}
-		
-		if(!emailOk(request.email)) {
-			return new ResponseEntity<String>("Bad email", HttpStatus.BAD_REQUEST);
 		}
 		
 		String encryptedPwd = encryptPwd(request.password1);
@@ -79,16 +71,11 @@ public class UserController {
 	}
 
 	
-	private String encryptPwd(String password) {
+	private static final String encryptPwd(String password) {
 		BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
 		return passwordEncryptor.encryptPassword(password);
 	}
 	
-
-	private boolean emailOk(String email) {
-		// TODO Auto-generated method stub
-		return true;
-	}
 
 	private static final boolean passwordsOk(String password1, String password2) {
 		if(!StringUtils.hasText(password1)) return false;

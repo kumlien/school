@@ -1,6 +1,5 @@
-package com.kumliens.school.web.responses;
+package com.kumliens.school.user;
 
-import com.kumliens.school.entities.User;
 
 public class UserResponse {
 	

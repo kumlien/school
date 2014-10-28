@@ -1,9 +1,7 @@
-package com.kumliens.school.repos;
+package com.kumliens.school.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import com.kumliens.school.entities.User;
 
 @Repository
 public interface UserRepo extends JpaRepository <User, Integer> {
