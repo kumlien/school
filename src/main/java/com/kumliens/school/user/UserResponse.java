@@ -9,7 +9,7 @@ public class UserResponse {
 	public String lastName;
 	public String username;
 
-	public UserResponse(User user) {
+	public UserResponse(SchoolUser user) {
 		this.id = user.getId();
 		email = user.getEmail();
 		firstName = user.getFirstName();

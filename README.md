@@ -13,3 +13,4 @@ https://docs.docker.com/installation/mac/
 		docker run  -p 5432:5432 --name school-postgres -d postgres -e POSTGRES_PASSWORD=school -e POSTGRES_USER=school
 	If it's not the first time, then start the container with 
 		docker start school-postgres
+	To remove the postgres school container: docker rm school-postgres
