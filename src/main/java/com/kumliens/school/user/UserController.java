@@ -2,7 +2,7 @@ package com.kumliens.school.user;
 
 import javax.validation.Valid;
 
-import org.jasypt.util.password.BasicPasswordEncryptor;
+import org.jasypt.util.password.PasswordEncryptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +26,13 @@ public class UserController {
 	
 	private final UserRepo userRepo;
 	
+	private final PasswordEncryptor passwordEncryptor;
+	
 	@Autowired
-	public UserController (UserRepo userRepo) {
+	public UserController (UserRepo userRepo, PasswordEncryptor passwordEncryptor) {
 		this.userRepo = userRepo;
+		this.passwordEncryptor = passwordEncryptor;
+				
 	}
 	
 	@RequestMapping(value="{id}")
@@ -71,8 +75,7 @@ public class UserController {
 	}
 
 	
-	private static final String encryptPwd(String password) {
-		BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+	private final String encryptPwd(String password) {
 		return passwordEncryptor.encryptPassword(password);
 	}
 	

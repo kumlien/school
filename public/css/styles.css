@@ -1,0 +1,28 @@
+/*
+ 2014  Robert Rohm.
+*/
+
+* {
+  font-family: sans-serif;
+}
+h1 { font-size: 24px;}
+h2 { font-size: 20px;}
+h3 { font-size: 16px;}
+
+pre {
+  background-color: #eee;
+  padding: 20px 0px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  text-align: left;
+  background-color: #eee;
+  padding: 2px 20px;
+}
+td {
+  padding: 2px 20px;
+  border: 1px solid #eee;
+}
+

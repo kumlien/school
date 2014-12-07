@@ -1,5 +1,13 @@
 spring.datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost/school
-    username: school
-    password: school
+    url: jdbc:postgresql://192.168.59.103:5432/postgres
+    username: postgres
+    password: postgres
+flyway.url: jdbc:postgresql://192.168.59.103:5432
+flyway.user: postgres 
+flyway.password: postgres
+
+spring.jpa.hibernate.ddl-auto: validate
+
+security.user.password: password
+logging.level.org.springframework.security: DEBUG
