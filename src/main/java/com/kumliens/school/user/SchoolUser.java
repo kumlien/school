@@ -9,6 +9,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,7 +52,7 @@ public class SchoolUser {
 	@LastModifiedDate
 	private Date modifiedDate;
 	
-	@ElementCollection(targetClass=Role.class)
+	@ElementCollection(targetClass=Role.class, fetch=FetchType.EAGER)
 	@CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
 	@Column(name="role")
 	private Set<Role> roles = Sets.newHashSet();
@@ -60,12 +61,15 @@ public class SchoolUser {
 	protected SchoolUser(){}
 
 	public SchoolUser(String username, String encryptedPwd, String firstName,
-			String lastName, String email) {
+			String lastName, String email, Set<Role> roles) {
 		this.username = username;
 		this.encryptedPwd = encryptedPwd;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.roles = roles;
+		createdDate = new Date();
+		modifiedDate = new Date();
 	}
 
 	public Integer getId() {
