@@ -67,12 +67,18 @@ public abstract class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	
 
+	/*
+	 * Holy crap... must be possible to solve this smarter. 
+	 * set the userDetailsService (ok)
+	 * set the password encoder we use (ok)
+	 * set user cache implementation and tell the providerManager to not erase credentials after authentication (looks like crap)
+	 */
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		 DaoAuthenticationConfigurer<AuthenticationManagerBuilder, UserDetailsService> daoAuthConfig = auth.userDetailsService(userDetailsService);
 		 daoAuthConfig.passwordEncoder(passwordEncoder);
+		 
 		 auth.objectPostProcessor(new ObjectPostProcessor<Object>() {
-			
 			@Override
 			public <O> O postProcess(O object) {
 				if(object instanceof ProviderManager) {
@@ -83,6 +89,8 @@ public abstract class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					if(!daoProviders.isEmpty()) {
 						((AbstractUserDetailsAuthenticationProvider)daoProviders.get(0)).setUserCache(userCache);
 					}
+				} else {
+					throw new RuntimeException("WTF, we want to be able to post process the ProviderManager!");
 				}
 				return object;
 			}

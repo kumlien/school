@@ -10,9 +10,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.google.common.collect.Sets;
-import com.kumliens.school.user.Role;
-import com.kumliens.school.user.SchoolUser;
 import com.kumliens.school.user.UserRepo;
 
 @Configuration
@@ -31,5 +28,9 @@ public class DatabaseConfig {
 //		SchoolUser user = new SchoolUser("svante", encoder.encode("vlhwhj"), "Svante", "Kumlien", "svante.kumlien@gmail.com", Sets.newHashSet(Role.ADMIN, Role.PARENT));
 //		user = userRepo.save(user);
 //		LOGGER.info("Svante created with id {}", user.getId());
+
+//		SchoolUser user = new SchoolUser("mari12", encoder.encode("idamari"), "Mari", "Kumlien", "mari.kumlien@gmail.com", Sets.newHashSet(Role.PARENT));
+//		user = userRepo.save(user);
+//		LOGGER.info("Mari created with id {}", user.getId());
 	}
 }
